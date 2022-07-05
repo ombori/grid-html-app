@@ -1,0 +1,43 @@
+<html lang="en">
+<head>
+    <title></title>
+    <link href="./animate.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-family: arial, sans-serif;
+        }
+
+        .name {
+            font-size: 80px;
+            margin: 10px;
+            color: rgb(33, 104, 204);
+        }
+
+        .price {
+            font-size: 60px;
+            margin: 10px;
+            color: rgb(55, 55, 55);
+        }
+    </style>
+</head>
+<body>
+<div class="animated infinite wobble delay-2s slow">
+    <h1 class="name"></h1>
+    <h2 class="price"></h2>
+</div>
+<script>
+  const gridapp = window.gridapp;
+  gridapp.addEventListener('ready', function() {
+    // settings are ready for use!
+    const settings = gridapp.getSettings();
+    document.getElementsByClassName('name')[0].innerHTML = settings.productName;
+    document.getElementsByClassName('price')[0].innerHTML = settings.productPrice;
+  });
+</script>
+</body>
+</html>
