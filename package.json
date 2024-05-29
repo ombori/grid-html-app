@@ -5,7 +5,7 @@
   "homepage": "./",
   "scripts": {
     "start": "http-server -o",
-    "build": "rimraf build && mkdir build && git ls-files > build/files && rsync -av --files-from=build/files . ./build && omg app build",
+    "build": "rimraf build && mkdir build && rsync -av --exclude-from=.gitignore . ./build && omg app build",
     "pub": "omg app publish",
     "upload-description": "omg app upload-description"
   },
