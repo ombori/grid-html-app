@@ -1,4 +1,6 @@
 (function() {
+  const originalHtml = document.body.innerHTML;
+
   function applyGridSettings(settings) {
     // Function to replace text placeholders
     function replaceTextPlaceholders(node, settings) {
@@ -93,10 +95,15 @@
   }
 
   window.addEventListener('GridappReady', function () {
+    document.body.innerHTML = originalHtml;
     console.log('GridappReady event received');
     const settings = window.gridapp.getSettings();
     console.log({settings});
     applyGridSettings(settings);
+    // Dispatch the DOMContentLoaded event
+    const event = document.createEvent('Event');
+    event.initEvent('DOMContentLoaded', true, true);
+    document.dispatchEvent(event);
   });
 })()
 
