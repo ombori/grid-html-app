@@ -33,17 +33,9 @@
 </head>
 <body>
 <div class="animated infinite wobble delay-2s slow">
-    <h1 class="name"></h1>
-    <h2 class="price"></h2>
+    <h1 class="name">{{txt:productName:The product name}}</h1>
+    <h2 class="price">{{txt:productPrice:The product price}}</h2>
 </div>
-<script>
-  const gridapp = window.gridapp;
-  gridapp.addEventListener('ready', function() {
-    // settings are ready for use!
-    const settings = gridapp.getSettings();
-    document.getElementsByClassName('name')[0].innerHTML = settings.productName;
-    document.getElementsByClassName('price')[0].innerHTML = settings.productPrice;
-  });
-</script>
+<script src="apply-settings.js"></script>
 </body>
 </html>
