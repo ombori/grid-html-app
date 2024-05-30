@@ -1,6 +1,15 @@
 (function() {
   const originalHtml = document.body.innerHTML;
 
+  function interceptDOMContentLoaded(event) {
+    // Prevent the default DOMContentLoaded event from firing
+    event.stopImmediatePropagation();
+    console.log('DOMContentLoaded intercepted');
+  }
+
+  // Add an event listener to intercept the DOMContentLoaded event
+  document.addEventListener('DOMContentLoaded', interceptDOMContentLoaded, true);
+
   function applyGridSettings(settings) {
     // Function to replace text placeholders
     function replaceTextPlaceholders(node, settings) {
@@ -95,15 +104,20 @@
   }
 
   window.addEventListener('GridappReady', function () {
+    // Remove the intercepting listener
+    document.removeEventListener('DOMContentLoaded', interceptDOMContentLoaded, true);
+
+    // Restore the original HTML of the body
     document.body.innerHTML = originalHtml;
     console.log('GridappReady event received');
     const settings = window.gridapp.getSettings();
     console.log({settings});
     applyGridSettings(settings);
-    // Dispatch the DOMContentLoaded event
+
+    // Dispatch the DOMContentLoaded event manually
     const event = document.createEvent('Event');
     event.initEvent('DOMContentLoaded', true, true);
     document.dispatchEvent(event);
   });
-})()
+})();
 
