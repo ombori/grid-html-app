@@ -92,7 +92,7 @@
     });
   }
 
-  window.adddEventListener('GridappReady', function () {
+  window.addEventListener('GridappReady', function () {
     console.log('GridappReady event received');
     const settings = window.gridapp.getSettings();
     console.log({settings});
