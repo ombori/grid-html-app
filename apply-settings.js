@@ -32,7 +32,7 @@
       }
     }
 
-    function replaceAttributePlaceholders(node, settings, attribute) {
+    function replaceAttributePlaceholders(node, settings, attribute, type = 'txt') {
       console.log('Attribute:', attribute, node.getAttribute(attribute));
       let textContent = node.getAttribute(attribute);
 
@@ -46,7 +46,11 @@
           const [index, type, key, description] = placeholder.match(/{{(.*?):(.*?):(.*?)}}/);
           console.log({index, type, key, description});
           if (settings[key]) {
-            textContent = textContent.replace(placeholder, settings[key]);
+            if (type === 'img') {
+              textContent = textContent.replace(placeholder, settings[key].media.url);
+            } else {
+              textContent = textContent.replace(placeholder, settings[key]);
+            }
           }
         });
         console.log('Updated attibute content:', attribute, textContent)
@@ -96,7 +100,7 @@
       }
       // Check if the element is an image and has src attribute for image placeholders
       if (element.tagName === 'IMG' && element.hasAttribute('src')) {
-        replaceAttributePlaceholders(element, settings, 'src');
+        replaceAttributePlaceholders(element, settings, 'src', 'img');
       }
     });
   }
