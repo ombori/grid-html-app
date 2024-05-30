@@ -92,10 +92,10 @@
     });
   }
 
-  const gridapp = window.gridapp;
-  gridapp.addEventListener('ready', function() {
-    // settings are ready for use!
-    const settings = gridapp.getSettings();
+  window.adddEventListener('GridappReady', function () {
+    console.log('GridappReady event received');
+    const settings = window.gridapp.getSettings();
+    console.log({settings});
     applyGridSettings(settings);
   });
 })()
